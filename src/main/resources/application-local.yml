@@ -1,0 +1,9 @@
+db:
+   url : jdbc:sqlserver://localhost;databaseName=Vega
+   username : sa
+   password : 1035911044
+
+server:
+  port: 8080
+  servlet:
+     context-path: /demo

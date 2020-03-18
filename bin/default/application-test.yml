@@ -1,0 +1,4 @@
+db:
+   url : jdbc:sqlserver://10.10.10.10;databaseName=Prg_Ppto_Vega
+   username : vg
+   password : 890938755
