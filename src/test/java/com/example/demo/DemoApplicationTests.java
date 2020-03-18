@@ -1,6 +1,5 @@
 package com.example.demo;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -31,7 +30,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @SpringBootTest
 @ActiveProfiles("test")
 public class DemoApplicationTests {
-	
+
 	private MockMvc mocMvc;
 
 	@Autowired
@@ -46,14 +45,14 @@ public class DemoApplicationTests {
 	}
 
 	@Test
-	public void contextLoads(){
+	public void contextLoads() {
 		assertEquals(1, 1);
 	}
-	
-	@Test
-	public void listarBloquesByFincaTestMapeoDatos() throws Exception {
 
-		MockHttpServletRequestBuilder request = get("/v1/ano/2019/calendario").contentType(MediaType.APPLICATION_JSON);
+	@Test
+	public void listarProductosTestMapeoDatos() throws Exception {
+
+		MockHttpServletRequestBuilder request = get("/v1/productos").contentType(MediaType.APPLICATION_JSON);
 
 		MvcResult result = mocMvc.perform(request).andExpect(status().isOk()).andReturn();
 
@@ -64,10 +63,9 @@ public class DemoApplicationTests {
 		assertThat(jsonResponse.isArray()).isTrue();
 
 		assertThat(jsonResponse.get(0).isObject()).isTrue();
-	
+
 		Field[] allFields = Producto.class.getDeclaredFields();
 
 		assertThat(Arrays.stream(allFields).anyMatch(field -> jsonResponse.get(0).has(field.getName()))).isTrue();
 	}
-
 }
